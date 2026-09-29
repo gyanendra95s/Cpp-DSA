@@ -1,0 +1,24 @@
+class Solution {
+  public:
+    vector<int> rangeSumQueries(vector<int>& arr, vector<vector<int>>& queries) {
+        // code here
+        vector<int>ans;
+        vector<int>q;
+        int sum=0;
+        for(int i=0;i<arr.size();i++){
+            sum=sum+arr[i];
+            q.push_back(sum);
+        }
+        
+        for(int i = 0; i < queries.size(); i++){
+            int l = queries[i][0];
+            int r = queries[i][1];
+
+            if(l == 0)
+                ans.push_back(q[r]);
+            else
+                ans.push_back(q[r] - q[l-1]);
+        }
+        return ans;
+    }
+};
