@@ -1,0 +1,16 @@
+class Solution {
+  public:
+    vector<vector<int>> getSubArrays(vector<int>& arr) {
+        // code here
+        
+        vector<vector<int>>ans;
+        for(int start=0;start<arr.size();start++){
+            vector<int>temp;
+            for(int end=start;end<arr.size();end++){
+                temp.push_back(arr[end]);
+                ans.push_back(temp);
+            }
+        }
+        return ans;
+    }
+};
