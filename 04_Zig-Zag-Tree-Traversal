@@ -1,0 +1,61 @@
+/* Structure of Binary Tree Node
+class Node {
+    int data;
+    Node *left;
+    Node *right;
+
+    Node(int val) {
+        data = val;
+        left = right = NULL;
+    }
+};*/
+#include<bits/stdc++.h>
+class Solution {
+  public:
+    vector<int> zigZagTraversal(Node* root) {
+        // code here
+        if(root==NULL){
+            return {};
+        }
+        vector<int>ans;
+        stack<Node*>currLevel;
+        stack<Node*>NextLevel;
+        
+        int LefttoRight=true;
+        
+        currLevel.push(root);
+        
+        while(!currLevel.empty()){
+            Node* temp=currLevel.top();
+            currLevel.pop();
+            
+            if(temp!=NULL){
+                ans.push_back(temp->data);
+            }
+            
+            if(LefttoRight){
+                if(temp->left!=NULL){
+                    NextLevel.push(temp->left);
+                }
+                if(temp->right!=NULL){
+                    NextLevel.push(temp->right);
+                }
+            }
+            
+            else{
+                if(temp->right!=NULL){
+                    NextLevel.push(temp->right);
+                }
+                if(temp->left!=NULL){
+                    NextLevel.push(temp->left);
+                }
+            }
+            if(currLevel.empty()){
+            LefttoRight=!LefttoRight;
+            swap(currLevel,NextLevel);
+        }
+        }
+        
+        return ans;
+    }
+};
