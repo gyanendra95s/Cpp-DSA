@@ -1,0 +1,34 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+vector<int> nthRowOfPascalTriangle(int n) {
+        int k=0;
+        vector<vector<int>> ans(n);
+
+        for(int i = 0; i < n; i++) {
+
+            for(int j = 0; j <= i; j++) {
+                if(j == 0 || i == j) {
+                    ans[k].push_back(1);
+                }
+                else {
+                    ans[k].push_back(ans[i-1][j-1] + ans[i-1][j]);
+                }
+            }
+            k++;
+        }
+
+        return ans[n-1];
+    }
+int main() {
+    int n;
+    cin>>n;
+
+    vector<int>fg=nthRowOfPascalTriangle(n);
+
+
+    for(int i=0;i<fg.size();i++){
+        cout<<fg[i]<<" ";
+    }
+    return 0;
+}
