@@ -1,0 +1,48 @@
+class Solution {
+  public:
+  Node* reverse(Node* head){
+              Node* curr=head;
+              Node* prev=NULL;
+              
+              while(curr!=NULL){
+                  Node* next=curr->next;
+                  curr->next=prev;
+                  prev=curr;
+                  curr=next;
+              }
+              return prev;
+  }
+    void rearrange(Node* head) {
+        // code here
+        Node* temp=head;
+        
+        Node* initial=new Node(NULL);
+        Node* initiall=initial;
+        
+        Node* final=new Node(NULL);
+        Node* finall=final;
+        
+        int count=1;
+        
+        while(temp!=NULL){
+            if(count%2!=0){
+                initiall->next=temp;
+                initiall=initiall->next;
+            }
+            else{
+                finall->next=temp;
+                finall=finall->next;
+            }
+            
+            temp=temp->next;
+            count++;
+        }
+        
+        finall->next=NULL;
+        final->next=reverse(final->next);
+        initiall->next=final->next;
+        
+        delete final;
+        delete initial;
+    }
+};
