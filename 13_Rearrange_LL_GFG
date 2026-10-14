@@ -1,0 +1,48 @@
+/* Node Structure
+class Node {
+  public:
+    int data;
+    Node *next;
+    Node(int x) {
+        data = x;
+        next = nullptr;
+    }
+}; */
+
+class Solution {
+  public:
+    void rearrangeEvenOdd(Node *head) {
+        // code here
+        if(head==NULL || head->next==NULL){
+            return;
+        }
+        Node* temp=head;
+        
+        Node* even=new Node(0);
+        Node* evenn=even;
+        
+        Node* odd=new Node(0);
+        Node* oddd=odd;
+        int pos=1;
+        while(temp!=NULL ){
+            if((pos)%2!=0){
+                oddd->next=temp;
+                oddd=oddd->next;
+            }
+            
+            else{
+                evenn->next=temp;
+                evenn= evenn->next;
+            }
+            temp=temp->next;
+            pos++;
+        }
+        
+        evenn->next=NULL;
+        oddd->next=even->next;
+        
+        // head=odd->next;
+        delete even;
+        delete odd;
+    }
+};
